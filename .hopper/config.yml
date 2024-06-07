@@ -1,16 +1,5 @@
 version: 2
 
-services:
-- type: Hopper::Services::ECS::Service
-  name: web
-  taskDefinition:
-    containerDefinitions:
-    - name: web
-      cpu: 64
-      memory: 256
-      essential: true
-      portMappings:
-      - containerPort: 80
 app:
   name: 'yopass'
   bootstrap: true
@@ -23,6 +12,18 @@ app:
 plugins:
   - type: Hopper::Plugins::Terraform
     terraformRoot: "infrastructure/environments/{{ .hopper_environment }}"
+
+services:
+- type: Hopper::Services::ECS::Service
+  name: web
+  taskDefinition:
+    containerDefinitions:
+    - name: web
+      cpu: 64
+      memory: 256
+      essential: true
+      portMappings:
+      - containerPort: 80
 
 workflow:
   type: Hopper::Workflow::Flows::Basic
