@@ -1,6 +1,5 @@
 locals {
   yopass_web_host = "passwords-staging.deliveroo.net"
-  env_name        = "staging"
 
   owner_emails = {
     SECURITY_ENGINEERING = "security@deliveroo.co.uk"
@@ -52,7 +51,7 @@ module "yopass_web_identity" {
   version = "~> 6.0"
 
   ecs_service_name = module.yopass_web.service_name
-  env_name         = local.env_name
+  env_name         = var.env_name
   extra_scopes     = ["employee", "engineer.contractor"]
   lb_listener_arn  = module.yopass_web.lb_listener_arn
   redirect_uris    = ["https://${local.yopass_web_host}/oauth2/idpresponse"]
