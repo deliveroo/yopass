@@ -26,7 +26,6 @@ services:
       portMappings:
       - containerPort: 80
 
-
 workflow:
   type: Hopper::Workflow::Flows::Basic
   name: roo-generate-workflow
