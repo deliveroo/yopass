@@ -13,7 +13,6 @@ plugins:
   - type: Hopper::Plugins::Terraform
     terraformRoot: "infrastructure/environments/{{ .hopper_environment }}"
 
-
 services:
 - type: Hopper::Services::ECS::Service
   name: web
@@ -25,7 +24,6 @@ services:
       essential: true
       portMappings:
       - containerPort: 80
-
 
 workflow:
   type: Hopper::Workflow::Flows::Basic
