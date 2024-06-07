@@ -17,8 +17,8 @@ app:
   environments:
     production:
       trackedBranch: 'master'
-  staging:
-    trackedBranch: 'staging'
+    staging:
+      trackedBranch: 'staging'
 
 plugins:
   - type: Hopper::Plugins::Terraform
