@@ -17,6 +17,7 @@ plugins:
 services:
 - type: Hopper::Services::ECS::Service
   name: web
+  desiredCount: 1
   taskDefinition:
     containerDefinitions:
     - name: web
