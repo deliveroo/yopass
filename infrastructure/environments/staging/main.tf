@@ -44,6 +44,12 @@ module "yopass_web" {
   application    = module.yopass.config
   service_name   = "web"
   container_port = 80
+
+  health_check_codes       = "404"
+  health_check_path        = "/"
+  alb_anomaly_bounds       = 6
+  alb_anomaly_should_alert = false
+  health_check_interval    = 30
 }
 
 module "yopass_web_identity" {
