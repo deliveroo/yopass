@@ -45,7 +45,7 @@ module "yopass_web" {
   service_name   = "web"
   container_port = 80
 
-  health_check_codes       = "404"
+  health_check_codes       = "200"
   health_check_path        = "/"
   alb_anomaly_bounds       = 6
   alb_anomaly_should_alert = false
