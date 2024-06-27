@@ -25,7 +25,6 @@ const App = () => {
           <Header />
           <Container maxWidth={'lg'}>
             <Routing />
-            // Do not show the features of the tool. See https://yopass.se/ for an example
             {/* <Features> */}
             <Attribution />
           </Container>
