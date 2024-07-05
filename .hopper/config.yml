@@ -21,8 +21,8 @@ services:
   taskDefinition:
     containerDefinitions:
     - name: web
-      cpu: 64
-      memory: 256
+      cpu: 1024
+      memory: 2048
       essential: true
       portMappings:
       - containerPort: 80
