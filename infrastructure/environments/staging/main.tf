@@ -63,3 +63,31 @@ module "yopass_web_identity" {
   redirect_uris    = ["https://${local.yopass_web_host}/oauth2/idpresponse"]
   target_group_arn = module.yopass_web.target_group_arn
 }
+
+# persistent storage using redis
+resource "aws_elasticache_parameter_group" "yopass_redis" {
+  name        = "yopass-redis-A"
+  description = "YoPass Redis Instance"
+  family      = "redis6.x"
+
+
+  parameter {
+    # Important to get this right...
+    name  = "cluster-enabled"
+    value = "no"
+  }
+
+  parameter {
+    # https://redis.io/topics/lru-cache#eviction-policies
+    name  = "maxmemory-policy"
+    value = "volatile-lru"
+  }
+}
+
+
+resource "hopper_variable" "redis_url" {
+  app_name   = "${module.yopass.app_name}"
+  name       = "REDIS_URL"
+  value      = "${module.redis_url.url}"
+  write_only = true
+}
