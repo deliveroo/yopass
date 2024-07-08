@@ -11,6 +11,9 @@ COPY website /website
 WORKDIR /website
 RUN yarn install --network-timeout 600000 && yarn build
 
+FROM debian:bookworm-slim
+RUN apt-get update && apt-get upgrade -y
+
 COPY --from=app /yopass/yopass /yopass/yopass-server /
 COPY --from=website /website/build /public
 COPY --from=runner /hopper-runner /usr/bin/hopper-runner
