@@ -88,15 +88,13 @@ module "yopass_redis" {
   source  = "terraform-registry.deliveroo.net/deliveroo/redis/aws"
   version = "~> 9.0"
 
-  constants = module.infra-bindings.redis_constants
-
-  application_name           = module.yopass.app_name
-  replication_group_id       = "yopass-cache"
-  use_as_store               = false
-  datadog_pagerduty_service  = ""
-  engine_version             = "6.2"
-  parameter_group_family     = "redis6.x"
-  instance_type              = "cache.t3.small"
+  application_name          = module.yopass.app_name
+  replication_group_id      = "yopass-cache"
+  use_as_store              = false
+  datadog_pagerduty_service = ""
+  engine_version            = "6.2"
+  parameter_group_family    = "redis6.x"
+  instance_type             = "cache.t3.small"
 }
 
 resource "hopper_variable" "redis_url" {
