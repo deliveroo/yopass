@@ -84,10 +84,27 @@ resource "aws_elasticache_parameter_group" "yopass_redis" {
   }
 }
 
+module "yopass_redis" {
+  source  = "terraform-registry.deliveroo.net/deliveroo/redis/aws"
+  version = "~> 9.0"
+
+  constants = module.infra-bindings.redis_constants
+
+  application_name           = module.yopass.app_name
+  replication_group_id       = "yopass-cache"
+  use_as_store               = false
+  team_name                  = "myteam"
+  auto_minor_version_upgrade = "true"
+  datadog_pagerduty_service  = ""
+  parameter_group_name       = aws_elasticache_parameter_group.myapp-redis-A.id
+  engine_version             = "6.2"
+  parameter_group_family     = "redis6.x"
+  instance_type              = "cache.t3.small"
+}
 
 resource "hopper_variable" "redis_url" {
-  app_name   = "${module.yopass.app_name}"
+  app_name   = module.yopass.app_name
   name       = "REDIS_URL"
-  value      = "${module.redis_url.url}"
+  value      = module.yopass_redis.url
   write_only = true
 }
