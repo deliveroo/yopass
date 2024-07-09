@@ -64,26 +64,6 @@ module "yopass_web_identity" {
   target_group_arn = module.yopass_web.target_group_arn
 }
 
-# persistent storage using redis
-resource "aws_elasticache_parameter_group" "yopass_redis" {
-  name        = "yopass-redis-A"
-  description = "YoPass Redis Instance"
-  family      = "redis6.x"
-
-
-  parameter {
-    # Important to get this right...
-    name  = "cluster-enabled"
-    value = "no"
-  }
-
-  parameter {
-    # https://redis.io/topics/lru-cache#eviction-policies
-    name  = "maxmemory-policy"
-    value = "volatile-lru"
-  }
-}
-
 module "yopass_redis" {
   source  = "terraform-registry.deliveroo.net/deliveroo/redis/aws"
   version = "~> 9.0"
@@ -95,6 +75,11 @@ module "yopass_redis" {
   engine_version            = "7.1"
   parameter_group_family    = "redis7"
   instance_type             = "cache.t3.small"
+
+  parameter_group_configuration = {
+    "cluster-enabled"  = "no"
+    "maxmemory-policy" = "volatile-lru"
+  }
 }
 
 resource "hopper_variable" "redis_url" {
