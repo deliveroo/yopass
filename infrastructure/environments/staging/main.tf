@@ -93,7 +93,7 @@ module "yopass_redis" {
 
 resource "hopper_variable" "redis_url" {
   app_name   = module.yopass.app_name
-  name       = "REDIS_URL"
+  name       = "REDIS_CACHE_URL"
   value      = module.yopass_redis.url
   write_only = true
 }
