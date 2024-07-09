@@ -68,9 +68,18 @@ module "yopass_redis" {
   source  = "terraform-registry.deliveroo.net/deliveroo/redis/aws"
   version = "~> 9.0"
 
-  application_name          = module.yopass.app_name
-  replication_group_id      = "yopass-cache"
-  use_as_store              = false
+  application_name           = module.yopass.app_name
+  replication_group_id       = "yopass-cache"
+  use_as_store               = false
+  at_rest_encryption         = false
+  transit_encryption_enabled = false
+  cluster_mode_enabled       = false
+  multi_az_enabled           = false
+  automatic_failover_enabled = true
+  num_node_groups            = 1
+  node_count                 = 1
+  replicas                   = 1
+
   datadog_pagerduty_service = ""
   engine_version            = "7.1"
   parameter_group_family    = "redis7"
@@ -78,7 +87,7 @@ module "yopass_redis" {
 
   parameter_group_configuration = {
     "cluster-enabled"  = "no"
-    "maxmemory-policy" = "volatile-lru"
+    "maxmemory-policy" = "allkeys-lru"
   }
 }
 
