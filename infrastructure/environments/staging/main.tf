@@ -92,7 +92,7 @@ module "yopass_redis" {
   replication_group_id      = "yopass-cache"
   use_as_store              = false
   datadog_pagerduty_service = ""
-  engine_version            = "7.x"
+  engine_version            = "7.1"
   parameter_group_family    = "redis7"
   instance_type             = "cache.t3.small"
 }
