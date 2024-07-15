@@ -23,44 +23,73 @@ executors:
       - image: deliveroo/circleci:latest
         <<: *global_dockerhub_auth
 
+build_docker_image: &build_docker_image
+  executor: docker-container
+  steps:
+    - attach_workspace:
+        at: /tmp/workspace
+    - *global_remote_docker
+    - *global_dockerhub_login
+    - checkout
+    - run:
+        name: Docker build
+        command: |
+          docker build --tag "${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}" . \
+          && docker save "${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}" \
+            --output "/tmp/workspace/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}".tar
+    - persist_to_workspace:
+        root: /tmp/workspace
+        paths:
+          - '*.tar'
+
+push_image_to_ecr: &push_image_to_ecr
+  executor: docker-container
+  steps:
+    - attach_workspace:
+        at: /tmp/workspace
+    - *global_remote_docker
+    - *global_dockerhub_login
+    - run:
+        name: Load docker image
+        command: |
+          docker load --input "/tmp/workspace/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}".tar
+    - run:
+        name: Push image to ECR
+        command: |
+          `print_env ${TARGET}`
+          push_image_to_ecr
+
+filter_master_branch: &filter_master_branch
+  filters:
+    branches:
+      only:
+      - master
+
+filter_staging_branch: &filter_staging_branch
+  filters:
+    branches:
+      only:
+      - staging
+
 jobs:
   build_docker_image:
     executor: docker-container
-    steps:
-      - attach_workspace:
-          at: /tmp/workspace
-      - *global_remote_docker
-      - *global_dockerhub_login
-      - checkout
-      - run:
-          name: Docker build
-          command: |
-            docker build --tag "${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}" . \
-            && docker save "${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}" \
-              --output "/tmp/workspace/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}".tar
-      - persist_to_workspace:
-          root: /tmp/workspace
-          paths:
-            - '*.tar'
+    resource_class: small
+    <<: *build_docker_image
 
-  push_staging:
+  push_ecr_image_to_staging:
     executor: docker-container
-    steps:
-      - attach_workspace:
-          at: /tmp/workspace
-      - *global_remote_docker
-      - *global_dockerhub_login
-      - run:
-          name: Load docker image
-          command: |
-            docker load --input "/tmp/workspace/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}".tar
-      - run:
-          name: Push image to ECR
-          command: |
-            `print_env ${TARGET}`
-            push_image_to_ecr
+    resource_class: small
     environment:
       TARGET: staging
+    <<: *push_image_to_ecr
+
+  push_ecr_image_to_production:
+    executor: docker-container
+    resource_class: small
+    environment:
+      TARGET: production
+    <<: *push_image_to_ecr
 
 workflows:
   version: 2
@@ -68,13 +97,9 @@ workflows:
     jobs:
       - build_docker_image:
           <<: *global_context
-          filters:
-            branches:
-              only: staging
-      - push_staging:
+      - push_ecr_image_to_staging:
           <<: *global_context
-          requires:
-            - build_docker_image
-          filters:
-            branches:
-              only: staging
+          <<: *filter_staging_branch
+      - push_ecr_image_to_staging:
+          <<: *global_context
+          <<: *filter_master_branch
