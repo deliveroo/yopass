@@ -100,6 +100,10 @@ workflows:
       - push_ecr_image_to_staging:
           <<: *global_context
           <<: *filter_staging_branch
-      - push_ecr_image_to_staging:
+          requires:
+            - build_docker_image
+      - push_ecr_image_to_production:
           <<: *global_context
           <<: *filter_master_branch
+          requires:
+            - build_docker_image
