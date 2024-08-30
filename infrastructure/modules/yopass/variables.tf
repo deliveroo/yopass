@@ -6,7 +6,7 @@ variable "datadog_api_key" {}
 variable "datadog_app_key" {}
 
 data "roo_aws_account" "current" {
-    shard = "global"
+  shard = "global"
 }
 
 data "roo_tags" "defaults" {}

@@ -1,7 +1,7 @@
 terraform {
   required_providers {
     aws = {
-      source  = "hashicorp/aws"
+      source = "hashicorp/aws"
     }
     circleci = {
       source = "terraform-registry.deliveroo.net/deliveroo/circleci"
@@ -10,16 +10,16 @@ terraform {
       source = "DataDog/datadog"
     }
     hopper = {
-      source  = "terraform-registry.deliveroo.net/deliveroo/hopper"
+      source = "terraform-registry.deliveroo.net/deliveroo/hopper"
     }
     random = {
       source = "hashicorp/random"
     }
     sentry = {
-      source  = "terraform-registry.deliveroo.net/deliveroo/sentry"
+      source = "terraform-registry.deliveroo.net/deliveroo/sentry"
     }
     roo = {
-      source  = "terraform-registry.deliveroo.net/deliveroo/roo"
+      source = "terraform-registry.deliveroo.net/deliveroo/roo"
     }
   }
 }
