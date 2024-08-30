@@ -1,6 +1,8 @@
 variable "env_name" { default = "staging" }
 variable "shard" { default = "global" }
 variable "region" { default = "eu-west-1" }
+variable "team_name" { default = "security-engineering" }
+
 variable "datadog_api_key" {}
 variable "datadog_app_key" {}
 
