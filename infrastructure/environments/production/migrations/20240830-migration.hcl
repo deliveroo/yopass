@@ -1,5 +1,9 @@
 mv {
   resources = {
-    "module.yopass_web" : "module.yopass_production.module.yopass_web"
+    "module.yopass" : "module.yopass_prod.module.yopass"
+    "module.yopass_redis" : "module.yopass_prod.module_redis"
+    "module.yopass_web" : "module.yopass_prod.module.yopass_web"
+    "module.yopass_web_identity" : "module.yopass_prod.module.yopass_web_identity"
+    "hopper_variable.redis_url" : "module.yopass_prod.hopper_variable.redis_url"
   }
 }
