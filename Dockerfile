@@ -27,8 +27,4 @@ ENV REDIS_URL=$REDIS_URL
 EXPOSE 80
 
 ENTRYPOINT ["hopper-runner"]
-<<<<<<< HEAD
 CMD ["/run_yopass.sh"]
-=======
-CMD ["/run_yopass.sh"]
->>>>>>> master
