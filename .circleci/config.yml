@@ -47,6 +47,7 @@ test_yopass_secret: &test_yopass_secret
   steps:
     - attach_workspace:
         at: /tmp/workspace
+    - checkout
     - run:
         name: Add and retrieve test secret
         command: |
