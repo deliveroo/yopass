@@ -26,7 +26,8 @@ service = Service('/usr/local/bin/chromedriver')
 driver = webdriver.Chrome(service=service, options=chrome_options)
 
 # Set the URL
-url = 'http://yopass_app'
+#url = 'http://yopass_app'
+url = 'http://172.19.0.3'
 
 # Set test secret
 test_secret = 'this is a Selenium test secret'
