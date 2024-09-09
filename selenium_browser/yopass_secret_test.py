@@ -26,7 +26,7 @@ service = Service('/usr/local/bin/chromedriver')
 driver = webdriver.Chrome(service=service, options=chrome_options)
 
 # Set the URL
-url = 'http://host.docker.internal'
+url = 'http://yopass_app'
 
 # Set test secret
 test_secret = 'this is a Selenium test secret'
@@ -44,7 +44,7 @@ button.click()
 # Get the response text
 wait = WebDriverWait(driver, 10)
 link_element = wait.until(EC.presence_of_element_located((By.ID, 'root')))
-link_element = driver.find_element(By.XPATH, '//td[contains(text(), "http://host.docker.internal/#/s/")]')
+link_element = driver.find_element(By.XPATH, f'//td[contains(text(), "{url}/#/s/")]')
 complete_url = link_element.text
 
 # Retrieve the test secret
