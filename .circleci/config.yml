@@ -54,8 +54,9 @@ test_yopass_secret: &test_yopass_secret
         name: Add and retrieve test secret
         command: |
           docker compose up -d
-          sleep 5
+          sleep 30
           yopass_result=$(docker compose logs selenium_browser | cut -d '|' -f2 | xargs 2>&1)
+          echo $yopass_result
           if [ "$yopass_result" = "PASS" ]; then
             echo "Secret successfully generated and retrieved from Yopass"
           else
