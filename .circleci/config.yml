@@ -42,6 +42,25 @@ build_docker_image: &build_docker_image
         paths:
           - '*.tar'
 
+test_yopass_secret: &test_yopass_secret
+  executir: docker-container
+  steps:
+    - attach_workspace:
+        at: /tmp/workspace
+    - run:
+        name: Add and retrieve test secret
+        command: |
+          docker compose up -d
+          sleep 5
+          yopass_result=$(docker compose logs selenium_browser | cut -d '|' -f2 | xargs 2>&1)
+          if [ "$yopass_result" = "PASS" ]; then
+            echo "Secret successfully generated and retrieved from Yopass"
+          else
+            echo "Secret generation and retrieval failed"
+            exit 1
+          fi
+
+
 push_image_to_ecr: &push_image_to_ecr
   executor: docker-container
   steps:
@@ -77,6 +96,11 @@ jobs:
     resource_class: small
     <<: *build_docker_image
 
+  add_and_retrieve_test_secret:
+    executor: docker-container
+    resource_class: small
+    <<: *test_yopass_secret
+
   push_ecr_image_to_staging:
     executor: docker-container
     resource_class: small
@@ -97,6 +121,10 @@ workflows:
     jobs:
       - build_docker_image:
           <<: *global_context
+      - add_and_retrieve_test_secret:
+          <<: *global_context
+          requires:
+            - test_yopass_secret
       - push_ecr_image_to_staging:
           <<: *global_context
           <<: *filter_staging_branch
