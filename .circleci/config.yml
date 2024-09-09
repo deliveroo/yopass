@@ -54,10 +54,7 @@ test_yopass_secret: &test_yopass_secret
         name: Add and retrieve test secret
         command: |
           docker compose up -d
-          sleep 30
-          docker network ls
-          docker inspect network project_app_network
-          docker inspect -f '{{index .Options "com.docker.network.bridge.enable_icc"}}' project_app_network
+          sleep 5
           yopass_result=$(docker compose logs selenium_browser | cut -d '|' -f2 | xargs 2>&1)
           echo $yopass_result
           if [ "$yopass_result" = "PASS" ]; then
