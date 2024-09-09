@@ -43,7 +43,7 @@ build_docker_image: &build_docker_image
           - '*.tar'
 
 test_yopass_secret: &test_yopass_secret
-  executir: docker-container
+  executor: docker-container
   steps:
     - attach_workspace:
         at: /tmp/workspace
