@@ -9,7 +9,6 @@ services:
 
   yopass_app:
     build:
-      context: ./yopass
       dockerfile: Dockerfile
     container_name: yopass_app
     ports:
