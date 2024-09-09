@@ -56,10 +56,9 @@ test_yopass_secret: &test_yopass_secret
           if [ "$yopass_result" = "PASS" ]; then
             echo "Secret successfully generated and retrieved from Yopass"
           else
-            echo "Secret generation and retrieval failed"
+            echo "Secret generation and retrieval failed!"
             exit 1
           fi
-
 
 push_image_to_ecr: &push_image_to_ecr
   executor: docker-container
@@ -124,7 +123,7 @@ workflows:
       - add_and_retrieve_test_secret:
           <<: *global_context
           requires:
-            - test_yopass_secret
+            - build_docker_image
       - push_ecr_image_to_staging:
           <<: *global_context
           <<: *filter_staging_branch
