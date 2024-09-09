@@ -22,7 +22,5 @@ services:
       context: ./selenium_browser
       dockerfile: Dockerfile
     container_name: selenium_browser
-    networks:
-      - app_network
     depends_on:
       - yopass_app
