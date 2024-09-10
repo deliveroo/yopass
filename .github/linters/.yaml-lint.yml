@@ -19,21 +19,10 @@ rules:
     level: warning
   commas:
     level: warning
-  comments: disable
-  comments-indentation: disable
-  document-start: disable
-  document-end: disable
-  empty-lines:
-    level: disable
-  empty-values:
-    level: disable
   hyphens:
     max-spaces-after: 1
     level: warning
-  indentation:
-    level: ignore
   key-duplicates: enable
-  key-ordering: disable
   line-length:
     max: 160
     level: warning
@@ -43,5 +32,3 @@ rules:
   octal-values: disable
   quoted-strings: disable
   trailing-spaces: enable
-  truthy:
-    level: disable
