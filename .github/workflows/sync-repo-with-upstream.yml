@@ -2,7 +2,7 @@ name: Sync Upstream to Staging
 
 on:
   schedule:
-    - cron: '35 12 * * *' # Testing during daytime for now 
+    - cron: '35 12 * * *' # Testing during daytime for now
   workflow_dispatch: # Allows manual triggering
 
 jobs:
