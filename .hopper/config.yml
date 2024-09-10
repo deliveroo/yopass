@@ -15,17 +15,17 @@ plugins:
 
 
 services:
-- type: Hopper::Services::ECS::Service
-  name: web
-  desiredCount: 1
-  taskDefinition:
+  - type: Hopper::Services::ECS::Service
+    name: web
+    desiredCount: 1
+    taskDefinition:
     containerDefinitions:
-    - name: web
-      cpu: 1024
-      memory: 2048
-      essential: true
-      portMappings:
-      - containerPort: 80
+      - name: web
+        cpu: 1024
+        memory: 2048
+        essential: true
+        portMappings:
+          - containerPort: 80
 
 workflow:
   type: Hopper::Workflow::Flows::Basic

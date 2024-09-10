@@ -2,39 +2,39 @@ name: Sync Upstream to Staging
 
 on:
   schedule:
-    - cron: '35 12 * * *' # Testing during daytime for now
-  workflow_dispatch: # Allows manual triggering
+    - cron: '35 12 * * *'  # Testing during daytime for now
+  workflow_dispatch: {}  # Allows manual triggering
 
 jobs:
   sync:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout the repository
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
+      - name: Checkout the repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-    - name: Set up Git
-      run: |
+      - name: Set up Git
+        run: |
         git config --global user.name 'github-actions[bot]'
         git config --global user.email 'github-actions[bot]@users.noreply.github.com'
 
-    - name: Add upstream remote
-      run: git remote add upstream https://github.com/jhaals/yopass.git
+      - name: Add upstream remote
+        run: git remote add upstream https://github.com/jhaals/yopass.git
 
-    - name: Fetch upstream changes
-      run: git fetch upstream
+      - name: Fetch upstream changes
+        run: git fetch upstream
 
-    - name: Checkout staging branch
-      run: git checkout staging
+      - name: Checkout staging branch
+        run: git checkout staging
 
-    - name: Merge upstream changes excluding Dockerfile
-      run: |
-        git merge upstream/master --no-commit --no-ff
-        git reset HEAD Dockerfile
-        git checkout -- Dockerfile
-        git commit -m "Merge upstream changes excluding Dockerfile" # we have custom changes in Dockerfile we need to retain
+      - name: Merge upstream changes excluding Dockerfile
+        run: |
+          git merge upstream/master --no-commit --no-ff
+          git reset HEAD Dockerfile
+          git checkout -- Dockerfile
+          git commit -m "Merge upstream changes excluding Dockerfile"
 
-    - name: Push changes to the staging branch
-      run: git push origin staging
+      - name: Push changes to the staging branch
+        run: git push origin staging
