@@ -5,11 +5,11 @@ services:
     ports:
       - "6379:6379"
 
-  yopass_app:
+  yopass:
     build:
       dockerfile: Dockerfile
-    hostname: yopass
-    container_name: yopass_app
+    #hostname: yopass
+    container_name: yopass
     ports:
       - "80:80"
     depends_on:
@@ -22,5 +22,5 @@ services:
       context: ./selenium_browser
       dockerfile: Dockerfile
     container_name: selenium_browser
-    depends_on:
-      - yopass_app
+    links:
+      - yopass
