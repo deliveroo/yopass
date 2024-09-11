@@ -63,13 +63,13 @@ filter_master_branch: &filter_master_branch
   filters:
     branches:
       only:
-      - master
+        - master
 
 filter_staging_branch: &filter_staging_branch
   filters:
     branches:
       only:
-      - staging
+        - staging
 
 jobs:
   build_docker_image:
