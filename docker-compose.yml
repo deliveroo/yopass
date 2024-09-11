@@ -32,3 +32,4 @@ services:
       - yopass
     networks:
       - internal
+
