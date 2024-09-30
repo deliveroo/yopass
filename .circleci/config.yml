@@ -54,8 +54,8 @@ test_yopass_secret: &test_yopass_secret
         name: Add and retrieve test secret
         command: |
           docker compose build --no-cache
-          docker compose up -d
-          sleep 10
+          docker compose up -d --wait
+          sleep 5
           yopass_result=$(docker compose logs selenium_browser | cut -d '|' -f2 | xargs 2>&1)
           echo $yopass_result
           if [ "$yopass_result" = "PASS" ]; then
@@ -64,6 +64,7 @@ test_yopass_secret: &test_yopass_secret
             echo "Secret generation and retrieval failed!"
             exit 1
           fi
+          docker compose down
 
 push_image_to_ecr: &push_image_to_ecr
   executor: docker-container
@@ -133,9 +134,9 @@ workflows:
           <<: *global_context
           <<: *filter_staging_branch
           requires:
-            - build_docker_image
+            - add_and_retrieve_test_secret
       - push_ecr_image_to_production:
           <<: *global_context
           <<: *filter_master_branch
           requires:
-            - build_docker_image
+            - add_and_retrieve_test_secret
