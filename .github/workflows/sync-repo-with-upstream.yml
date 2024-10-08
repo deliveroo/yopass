@@ -35,7 +35,7 @@ jobs:
 
       - name: Merge upstream changes excluding Dockerfile
         run: |
-          git merge upstream/main --no-commit --no-ff --allow-unrelated-histories || true
+          git merge upstream/master --no-commit --no-ff --allow-unrelated-histories || true
           git reset HEAD Dockerfile
           git checkout -- Dockerfile
           git add -A
