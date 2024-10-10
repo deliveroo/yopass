@@ -131,6 +131,7 @@ workflows:
           <<: *global_context
       - add_and_retrieve_test_secret:
           <<: *global_context
+          <<: *filter_staging_branch
           requires:
             - build_docker_image
       - push_ecr_image_to_staging:
@@ -141,5 +142,3 @@ workflows:
       - push_ecr_image_to_production:
           <<: *global_context
           <<: *filter_master_branch
-          requires:
-            - add_and_retrieve_test_secret
