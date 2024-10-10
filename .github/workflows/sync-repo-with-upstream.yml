@@ -26,6 +26,7 @@ jobs:
       - name: Fetch upstream changes
         run: git fetch upstream
 
+<<<<<<< HEAD
       - name: Checkout staging branch
         run: git checkout staging
 
@@ -39,13 +40,20 @@ jobs:
           git push origin staging
 
       - name: Checkout new branch for master PR
+=======
+      - name: Checkout new branch
+>>>>>>> origin/staging
         id: checkout-new-branch
         run: |
           BRANCH_NAME="sync-upstream-$(date +%s)"
           echo "BRANCH_NAME=${BRANCH_NAME}" >> $GITHUB_ENV
           git checkout -b $BRANCH_NAME
 
+<<<<<<< HEAD
       - name: Merge upstream changes into new branch excluding Dockerfile
+=======
+      - name: Merge upstream changes excluding Dockerfile
+>>>>>>> origin/staging
         run: |
           git merge upstream/master --no-commit --no-ff --allow-unrelated-histories || true
           git reset HEAD Dockerfile
@@ -56,6 +64,7 @@ jobs:
         run: |
           git push origin $BRANCH_NAME
 
+<<<<<<< HEAD
       - name: Create Pull Request for master
         uses: peter-evans/create-pull-request@v7
         with:
@@ -65,3 +74,14 @@ jobs:
           body: |
             This PR keeps the forked repository in sync with the upstream Yopass repository
           base: master
+=======
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: 'Sync with upstream'
+          branch: $BRANCH_NAME
+          title: 'Sync with upstream Yopass repository'
+          body: |
+            This PR keeps the forked repository in sync with the upstream Yopass repository
+          base: staging
+>>>>>>> origin/staging
