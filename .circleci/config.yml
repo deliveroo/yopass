@@ -51,7 +51,7 @@ test_yopass_secret: &test_yopass_secret
     - attach_workspace:
         at: /tmp/workspace
     - setup_remote_docker:
-      docker_layer_caching: true
+        docker_layer_caching: true
     - checkout
     - run:
         name: Add and retrieve test secret
