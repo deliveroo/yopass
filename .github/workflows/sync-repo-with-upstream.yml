@@ -20,8 +20,8 @@ jobs:
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
 
-      - name: Add upstream remote https://github.com/jhaals/yopass.git
-        run: git remote add upstream
+      - name: Add upstream remote repository
+        run: git remote add upstream https://github.com/jhaals/yopass.git
 
       - name: Fetch upstream changes
         run: git fetch upstream
@@ -35,7 +35,7 @@ jobs:
 
       - name: Merge upstream changes excluding Dockerfile
         run: |
-          git merge upstream/main --no-commit --no-ff --allow-unrelated-histories || true
+          git merge upstream/master --no-commit --no-ff --allow-unrelated-histories || true
           git reset HEAD Dockerfile
           git checkout -- Dockerfile
           git add -A
