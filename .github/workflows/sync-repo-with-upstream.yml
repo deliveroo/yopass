@@ -45,7 +45,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: 'Sync with upstream'
-          branch: $BRANCH_NAME
+          branch: ${{ env.BRANCH_NAME }}
           title: 'Sync with upstream Yopass repository'
           body: |
             This PR keeps the forked repository in sync with the upstream Yopass repository
