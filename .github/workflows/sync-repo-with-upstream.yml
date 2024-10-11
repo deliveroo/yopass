@@ -34,8 +34,8 @@ jobs:
       - name: Merge upstream changes excluding Dockerfile
         run: |
           git merge upstream/master --no-commit --no-ff --allow-unrelated-histories || true
-          git reset HEAD Dockerfile
-          git checkout -- Dockerfile
+          git reset HEAD Dockerfile .github/workflows/*
+          git checkout -- Dockerfile .github/workflows/*
           git add -A
       - name: Push changes to the new branch
         run: |
