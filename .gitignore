@@ -24,3 +24,8 @@ deploy/aws-lambda/.serverless
 
 website/cypress/videos
 website/cypress/screenshots
+
+.github/test.yml
+.github/yamlint.yml
+.github/docker.yaml
+.github/codeql-analysis.yml

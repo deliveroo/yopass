@@ -19,7 +19,6 @@ jobs:
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-
       - name: Add upstream remote repository
         run: git remote add upstream https://github.com/jhaals/yopass.git
 
@@ -32,8 +31,8 @@ jobs:
       - name: Merge upstream changes into staging excluding Dockerfile
         run: |
           git merge upstream/master --no-commit --no-ff --allow-unrelated-histories || true
-          git reset HEAD Dockerfile
-          git checkout -- Dockerfile
+          git reset HEAD Dockerfile .github/workflows/*
+          git checkout -- Dockerfile .github/workflows/*
           git add -A
           git commit -m "Merge upstream changes into staging"
           git push origin staging
@@ -44,14 +43,12 @@ jobs:
           BRANCH_NAME="sync-upstream-$(date +%s)"
           echo "BRANCH_NAME=${BRANCH_NAME}" >> $GITHUB_ENV
           git checkout -b $BRANCH_NAME
-
-      - name: Merge upstream changes into new branch excluding Dockerfile
+      - name: Merge upstream changes excluding Dockerfile
         run: |
           git merge upstream/master --no-commit --no-ff --allow-unrelated-histories || true
-          git reset HEAD Dockerfile
-          git checkout -- Dockerfile
+          git reset HEAD Dockerfile .github/workflows/*
+          git checkout -- Dockerfile .github/workflows/*
           git add -A
-
       - name: Push changes to the new branch
         run: |
           git push origin $BRANCH_NAME
