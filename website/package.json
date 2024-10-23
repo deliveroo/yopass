@@ -9,7 +9,7 @@
     "@fortawesome/fontawesome-svg-core": "^6.6.0",
     "@fortawesome/free-solid-svg-icons": "^6.6.0",
     "@fortawesome/react-fontawesome": "^0.2.2",
-    "@mui/material": "^6.1.4",
+    "@mui/material": "^6.1.5",
     "file-saver": "^2.0.5",
     "i18next": "^23.16.2",
     "i18next-browser-languagedetector": "^8.0.0",
@@ -36,10 +36,10 @@
   },
   "devDependencies": {
     "@types/file-saver": "^2.0.7",
-    "@types/jest": "^29.5.13",
-    "@types/node": "^22.7.8",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^22.7.9",
     "@types/openpgp": "^4.4.22",
-    "@types/react": "^18.3.11",
+    "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@types/react-dropzone": "^5.1.0",
     "@types/react-router-dom": "^5.3.3",
@@ -52,7 +52,7 @@
     "prettier": "^3.3.3",
     "start-server-and-test": "^2.0.8",
     "typescript": "^5.6.3",
-    "vite": "^5.4.9"
+    "vite": "^5.4.10"
   },
   "prettier": {
     "singleQuote": true,
