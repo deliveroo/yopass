@@ -142,3 +142,5 @@ workflows:
       - push_ecr_image_to_production:
           <<: *global_context
           <<: *filter_master_branch
+          requires:
+            - build_docker_image
