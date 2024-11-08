@@ -13,7 +13,6 @@ plugins:
   - type: Hopper::Plugins::Terraform
     terraformRoot: "infrastructure/environments/{{ .hopper_environment }}"
 
-tasks:
 services:
 - type: Hopper::Services::ECS::Service
   name: web
