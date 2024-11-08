@@ -953,7 +953,6 @@
   version "29.5.14"
   resolved "https://registry.yarnpkg.com/@types/jest/-/jest-29.5.14.tgz#2b910912fa1d6856cadcd0c1f95af7df1d6049e5"
   integrity sha512-ZN+4sdnLUbo8EVvVc2ao0GFW6oVrQRPn4K2lglySj7APvSrgzxHiNNK99us4WDMi57xxA2yggblIAMNhXOotLQ==
-
   dependencies:
     expect "^29.0.0"
     pretty-format "^29.0.0"
@@ -1034,7 +1033,6 @@
   version "18.3.12"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-18.3.12.tgz#99419f182ccd69151813b7ee24b792fe08774f60"
   integrity sha512-D2wOSq/d6Agt28q7rSI3jhU7G6aiuzljDGZ2hTZHIkrTLUI+AF3WMeKkEZ9nN2fkBAlcktT6vcZjDFiIhMYEQw==
-
   dependencies:
     "@types/prop-types" "*"
     csstype "^3.0.2"
@@ -1077,7 +1075,6 @@
   version "4.3.3"
   resolved "https://registry.yarnpkg.com/@vitejs/plugin-react/-/plugin-react-4.3.3.tgz#28301ac6d7aaf20b73a418ee5c65b05519b4836c"
   integrity sha512-NooDe9GpHGqNns1i8XDERg0Vsg5SSYRhRxxyTGogUdkdNt47jal+fbuYi+Yfq6pzRCKXyoPcWisfxE6RIM3GKA==
-
   dependencies:
     "@babel/core" "^7.25.2"
     "@babel/plugin-transform-react-jsx-self" "^7.24.7"
@@ -2098,7 +2095,6 @@ eslint-plugin-cypress@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/eslint-plugin-cypress/-/eslint-plugin-cypress-4.1.0.tgz#11178fd250d437e2ec57bf24b8a9058b356f8cac"
   integrity sha512-JhqkMY02mw74USwK9OFhectx3YSj6Co1NgWBxlGdKvlqiAp9vdEuQqt33DKGQFvvGS/NWtduuhWXWNnU29xDSg==
-
   dependencies:
     globals "^15.11.0"
 
@@ -2107,7 +2103,6 @@ eslint-plugin-import@^2.31.0:
   resolved "https://registry.yarnpkg.com/eslint-plugin-import/-/eslint-plugin-import-2.31.0.tgz#310ce7e720ca1d9c0bb3f69adfd1c6bdd7d9e0e7"
   integrity sha512-ixmkI62Rbc2/w8Vfxyh1jQRTdRTF52VxwRVHl/ykPAmqG+Nb7/kNn+byLP0LxPgI7zWA16Jt82SybJInmMia3A==
   dependencies:
-
     "@rtsao/scc" "^1.1.0"
     array-includes "^3.1.8"
     array.prototype.findlastindex "^1.2.5"
@@ -2639,7 +2634,6 @@ i18next@^23.16.4:
   version "23.16.4"
   resolved "https://registry.yarnpkg.com/i18next/-/i18next-23.16.4.tgz#79c07544f6d6fa803fe8427108d547542c1d6cf4"
   integrity sha512-9NIYBVy9cs4wIqzurf7nLXPyf3R78xYbxExVqHLK9od3038rjpyOEzW+XB130kZ1N4PZ9inTtJ471CRJ4Ituyg==
-
   dependencies:
     "@babel/runtime" "^7.23.2"
 
@@ -3500,11 +3494,10 @@ react-hook-form@^7.53.1:
   resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.53.1.tgz#3f2cd1ed2b3af99416a4ac674da2d526625add67"
   integrity sha512-6aiQeBda4zjcuaugWvim9WsGqisoUk+etmFEsSUMm451/Ic8L/UAb7sRtMj3V+Hdzm6mMjU1VhiSzYUZeBm0Vg==
 
-react-i18next@^15.1.0:
-  version "15.1.0"
-  resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-15.1.0.tgz#9494e4add2389f04c205dd7628c1aa75747b98a3"
-  integrity sha512-zj3nJynMnZsy2gPZiOTC7XctCY5eQGqT3tcKMmfJWC9FMvgd+960w/adq61j8iPzpwmsXejqID9qC3Mqu1Xu2Q==
-
+react-i18next@^15.1.1:
+  version "15.1.1"
+  resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-15.1.1.tgz#30bc76b39ded6ee37f1457677e46e6d6f11d9f64"
+  integrity sha512-R/Vg9wIli2P3FfeI8o1eNJUJue5LWpFsQePCHdQDmX0Co3zkr6kdT8gAseb/yGeWbNz1Txc4bKDQuZYsC0kQfw==
   dependencies:
     "@babel/runtime" "^7.25.0"
     html-parse-stringify "^3.0.1"
@@ -4326,7 +4319,6 @@ update-browserslist-db@^1.1.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/update-browserslist-db/-/update-browserslist-db-1.1.1.tgz#80846fba1d79e82547fb661f8d141e0945755fe5"
   integrity sha512-R8UzCaa9Az+38REPiJ1tXlImTJXlVfgHZsglwBD/k6nj76ctsH1E3q4doGrukiLQd3sGQYu56r5+lo5r94l29A==
-
   dependencies:
     escalade "^3.2.0"
     picocolors "^1.1.0"
@@ -4354,7 +4346,6 @@ vite@^5.4.10:
   version "5.4.10"
   resolved "https://registry.yarnpkg.com/vite/-/vite-5.4.10.tgz#d358a7bd8beda6cf0f3b7a450a8c7693a4f80c18"
   integrity sha512-1hvaPshuPUtxeQ0hsVH3Mud0ZanOLwVTneA1EgbAM5LhaZEqyPWGRQ7BtaMvUrTDeEaC8pxtj6a6jku3x4z6SQ==
-
   dependencies:
     esbuild "^0.21.3"
     postcss "^8.4.43"
