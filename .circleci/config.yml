@@ -143,4 +143,4 @@ workflows:
           <<: *global_context
           <<: *filter_master_branch
           requires:
-            - build_ddocker_image
+            - build_docker_image
