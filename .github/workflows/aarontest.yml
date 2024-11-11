@@ -1,0 +1,27 @@
+name: TEST sync master to staging branch
+on:
+  push:
+    branches:
+      - staging
+  workflow_dispatch: # Allows manual triggering
+
+jobs:
+  syncStagingToMaster:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: master
+      - name: Sync master branch to staging
+        run: |
+          git fetch origin staging
+      - name: Merge Staging into the new branch
+        run: git merge --no-ff origin/staging --allow-unrelated-histories || true
+      - name: Revert changes to Dockerfile and .github
+        run: |
+          git checkout HEAD -- Dockerfile
+          git checkout HEAD -- .github
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: staging-to-master
