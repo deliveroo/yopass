@@ -2,6 +2,7 @@ vendor
 coverage
 coverage.txt
 website/node_modules
+__pycache__
 
 # production
 website/build

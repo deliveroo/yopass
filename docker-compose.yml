@@ -22,11 +22,11 @@ services:
     environment:
       - REDIS_CACHE_URL=redis://redis:6379
 
-  selenium_browser:
+  playwright_browser:
     build:
-      context: ./selenium_browser
+      context: ./playwright_browser
       dockerfile: Dockerfile
-    container_name: selenium_browser
+    container_name: playwright_browser
     depends_on:
       - redis
       - yopass
