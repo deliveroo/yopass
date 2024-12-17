@@ -22,13 +22,15 @@ services:
     environment:
       - REDIS_CACHE_URL=redis://redis:6379
 
-  playwright_browser:
+  yopass_client:
     build:
-      context: ./playwright_browser
-      dockerfile: Dockerfile
-    container_name: playwright_browser
+      context: .
+      dockerfile: yopass_client/Dockerfile
+    container_name: yopass_client
     depends_on:
       - redis
       - yopass
     networks:
       - internal
+    healthcheck:
+       test: "exit 0"
