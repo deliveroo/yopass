@@ -59,7 +59,7 @@ test_yopass_secret: &test_yopass_secret
           docker compose build --no-cache
           docker compose up -d --wait
           sleep 5
-          yopass_result=$(docker compose logs playwright_browser | cut -d '|' -f2 | xargs 2>&1)
+          yopass_result=$(docker compose logs yopass_client | cut -d '|' -f2 | xargs 2>&1)
           echo $yopass_result
           if [ "$yopass_result" = "PASS" ]; then
             echo "Secret successfully generated and retrieved from Yopass"
