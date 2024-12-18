@@ -32,5 +32,3 @@ services:
       - yopass
     networks:
       - internal
-    healthcheck:
-       test: "exit 0"

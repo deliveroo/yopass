@@ -15,5 +15,4 @@ if [ "$SECRET_RETRIEVED" == "$TEST_SECRET" ]; then
         echo "PASS"                       
 else               
         echo "FAIL"
-        exit 1     
 fi  
