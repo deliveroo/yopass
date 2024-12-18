@@ -1,20 +1,8 @@
-name: "CodeQL - Minimal incremental analysis"
+name: "CodeQL - Complete analysis"
 
 on:
-  push:
-    branches:
-      - "main"  # Change this to the branch to default branch
-      - "!ignore/branch" # Ignore CodeQL scan for these branches
-      - "!test/*" # Ignore CodeQL scan for these branches
-  pull_request:
-    branches:
-      - "main"  # Change this to the branch to default branch
-    paths-ignore:
-      - '**/*.md'
-      - '**/*.txt'
-  # If your project is not actively developed, consider scheduling CodeQL scans
-  #schedule:
-  # - cron: '44 22 * * 5' # Run CodeQL scan every Friday at 10:44 PM UTC
+  schedule:
+    - cron: '44 23 6 * *' # Run CodeQL scan on a day of every month at 11:44 PM UTC
     
 jobs:
   analyze:
@@ -36,6 +24,10 @@ jobs:
       uses: actions/checkout@v3
 
 
+    - uses: actions/setup-go@v3
+      with:
+        cache: true
+
     # Initializes the CodeQL tools for scanning.
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v2
@@ -43,6 +35,17 @@ jobs:
         languages: ${{ matrix.language }}
         # queries: security-extended,security-and-quality
         # debug: true # Only use this for debugging. It will increase the runtime of the action and take up storage
+
+    # Autobuild attempts to build any compiled languages  (C/C++, C#, Go, or Java).
+    # If this step fails, then you should remove it and run the build manually (see below)
+    - name: Autobuild
+      uses: github/codeql-action/autobuild@v2
+    
+    #   If the Autobuild fails above, remove it and uncomment the following three lines.
+    #   modify them (or add more) to build your code if your project, please refer to the EXAMPLE below for guidance.
+    # - run: |
+    #   echo "Run, Build Application using script"
+    #   ./location_of_script_within_repo/buildscript.sh
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v2
