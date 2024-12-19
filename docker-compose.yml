@@ -22,11 +22,11 @@ services:
     environment:
       - REDIS_CACHE_URL=redis://redis:6379
 
-  selenium_browser:
+  yopass_client:
     build:
-      context: ./selenium_browser
-      dockerfile: Dockerfile
-    container_name: selenium_browser
+      context: .
+      dockerfile: yopass_client/Dockerfile
+    container_name: yopass_client
     depends_on:
       - redis
       - yopass
