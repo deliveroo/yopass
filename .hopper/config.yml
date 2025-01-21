@@ -1,8 +1,9 @@
+---
 version: 2
-
 app:
   name: 'yopass'
   bootstrap: true
+  orgGroup: security
   environments:
     production:
       trackedBranch: 'master'
