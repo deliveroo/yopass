@@ -104,6 +104,8 @@ $ yopass-server -h
       --redis string       Redis URL (default "redis://localhost:6379/0")
       --tls-cert string    path to TLS certificate
       --tls-key string     path to TLS key
+      --cors-allow-origin  Access-Control-Allow-Origin CORS setting (default *)
+
 ```
 
 Encrypted secrets can be stored either in Memcached or Redis by changing the `--database` flag.
@@ -186,3 +188,4 @@ Here's a list of available translations:
 - [Dutch](https://github.com/KevinRosendaal/yopass-dutch)
 - [Russian](https://github.com/karpechenkovkonstantin/yopass-russian)
 - [Swedish](https://github.com/nkpg-kommun/yopass-swedish)
+- [Portuguese (Brazil)](https://github.com/daniellopesjp/yopass-ptbr)
