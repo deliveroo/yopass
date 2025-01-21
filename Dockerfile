@@ -6,7 +6,7 @@ WORKDIR /yopass
 COPY . .
 RUN go build ./cmd/yopass && go build ./cmd/yopass-server
 
-FROM node:18 as website
+FROM node:22 as website
 COPY website /website
 WORKDIR /website
 RUN yarn install --network-timeout 600000 && yarn build
