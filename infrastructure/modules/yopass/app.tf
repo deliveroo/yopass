@@ -16,7 +16,7 @@ module "yopass" {
   tier          = 4
   team_name     = local.supported_team_names["SECURITY_ENGINEERING"]
 
-  tracked_branch         = var.env_name == "production" ? "master" : var.env_name
+  tracked_branch = var.env_name == "production" ? "master" : var.env_name
 }
 
 module "yopass_web" {
