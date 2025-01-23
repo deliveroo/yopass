@@ -11,6 +11,10 @@ App is released using Hopper -:
 
 [Deliveroo Documentation](https://deliveroo.atlassian.net/wiki/spaces/EN/pages/4782981127/Yopass+-+share+passwords+within+Deliveroo+in+a+secure+way)
 
+As we have forked this Github project, to keep the code and dependencies updated we're using a Github action which pulls downs the changes from upstream to a branch and merges into staging to release.
+
+TBD - fix GH action to release to prod if the staging release was successful.
+
 [![Go Report Card](https://goreportcard.com/badge/github.com/jhaals/yopass)](https://goreportcard.com/report/github.com/jhaals/yopass)
 [![codecov](https://codecov.io/gh/jhaals/yopass/branch/master/graph/badge.svg)](https://codecov.io/gh/jhaals/yopass)
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/jhaals/yopass?sort=semver)
