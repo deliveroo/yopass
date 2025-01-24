@@ -43,3 +43,4 @@ service_scorecard:
 
   # If you have multiple hopper apps within one repo, please add another entry for the next app.
   # - hopper_app_name:
+  
