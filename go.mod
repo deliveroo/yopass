@@ -1,10 +1,6 @@
 module github.com/jhaals/yopass
 
-<<<<<<< HEAD
-go 1.22
-=======
 go 1.23.0
->>>>>>> upstream/master
 
 toolchain go1.24.0
 
