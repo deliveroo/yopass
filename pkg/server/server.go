@@ -7,8 +7,6 @@ import (
 	"strings"
 	"time"
 
-	"github.com/spf13/viper"
-
 	"github.com/gofrs/uuid"
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
@@ -129,12 +127,6 @@ func (y *Server) deleteSecret(w http.ResponseWriter, request *http.Request) {
 func (y *Server) optionsSecret(w http.ResponseWriter, _ *http.Request) {
 	w.Header().Set("Access-Control-Allow-Origin", viper.GetString("cors-allow-origin"))
 	w.Header().Set("Access-Control-Allow-Methods", strings.Join([]string{http.MethodGet, http.MethodDelete, http.MethodOptions}, ","))
-}
-
-// optionsSecret handle the Options http method by returning the correct CORS headers
-func (y *Server) optionsCreateSecret(w http.ResponseWriter, _ *http.Request) {
-	w.Header().Set("Access-Control-Allow-Origin", viper.GetString("cors-allow-origin"))
-	w.Header().Set("Access-Control-Allow-Methods", strings.Join([]string{http.MethodPost}, ","))
 }
 
 // HTTPHandler containing all routes
