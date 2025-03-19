@@ -1,3 +1,5 @@
+Dockerfile
+
 vendor
 coverage
 coverage.txt

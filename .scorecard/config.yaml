@@ -1,0 +1,42 @@
+# Scorecard Configuration File
+
+# This is used to manually capture values for the scorecard. Over time, information in this file will be replaced by automated checks.
+# Please see https://github.com/deliveroo/service-readiness-api/blob/main/.scorecard/config.example.yml for an example configuration file.
+# Documentation: https://deliveroo.atlassian.net/wiki/spaces/SRE/pages/4827185189/Service+Scorecard+Config+File
+
+version: 1
+last_updated_at: "2024-12-10"
+
+service_scorecard:
+  # The name of the Hopper application. This should match the name used in internal systems and documentation.
+  - hopper_app_name: "<Hopper App Name>"
+
+    # 1. Basic information
+    basic_information:
+
+    # 2. Ecosystem Architecture Diagram
+    architecture_diagram:
+
+    # 3. Request Flows
+    request_flows:
+
+    # 4. Releases
+    releases:
+
+    # 5. Performance and Scalability
+    performance_scalability:
+
+    # 6. Dependencies
+    dependencies:
+
+    # 7. Recommendations and Best Practices
+    recommendations_best_practices:
+
+    # 8. Monitoring Dashboards
+    monitoring_dashboards:
+
+    # 9. Monitors and Alerts
+    monitors_alerts:
+
+    # 10. Efficiency
+    efficiency:

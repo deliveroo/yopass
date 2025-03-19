@@ -7,6 +7,8 @@ import (
 	"strings"
 	"time"
 
+	"github.com/spf13/viper"
+
 	"github.com/gofrs/uuid"
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
@@ -126,8 +128,13 @@ func (y *Server) deleteSecret(w http.ResponseWriter, request *http.Request) {
 // optionsSecret handle the Options http method by returning the correct CORS headers
 func (y *Server) optionsSecret(w http.ResponseWriter, _ *http.Request) {
 	w.Header().Set("Access-Control-Allow-Origin", viper.GetString("cors-allow-origin"))
-	w.Header().Set("Access-Control-Allow-Methods", "*")
-	w.Header().Set("Access-Control-Allow-Headers", "content-type")
+	w.Header().Set("Access-Control-Allow-Methods", strings.Join([]string{http.MethodGet, http.MethodDelete, http.MethodOptions}, ","))
+}
+
+// optionsSecret handle the Options http method by returning the correct CORS headers
+func (y *Server) optionsCreateSecret(w http.ResponseWriter, _ *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", viper.GetString("cors-allow-origin"))
+	w.Header().Set("Access-Control-Allow-Methods", strings.Join([]string{http.MethodPost}, ","))
 }
 
 // HTTPHandler containing all routes
@@ -136,12 +143,12 @@ func (y *Server) HTTPHandler() http.Handler {
 	mx.Use(newMetricsMiddleware(y.Registry))
 
 	mx.HandleFunc("/secret", y.createSecret).Methods(http.MethodPost)
-	mx.HandleFunc("/secret", y.optionsSecret).Methods(http.MethodOptions)
+	mx.HandleFunc("/secret", y.optionsCreateSecret).Methods(http.MethodOptions)
 	mx.HandleFunc("/secret/"+keyParameter, y.getSecret).Methods(http.MethodGet)
 	mx.HandleFunc("/secret/"+keyParameter, y.deleteSecret).Methods(http.MethodDelete)
 
 	mx.HandleFunc("/file", y.createSecret).Methods(http.MethodPost)
-	mx.HandleFunc("/file", y.optionsSecret).Methods(http.MethodOptions)
+	mx.HandleFunc("/file", y.optionsCreateSecret).Methods(http.MethodOptions)
 	mx.HandleFunc("/file/"+keyParameter, y.getSecret).Methods(http.MethodGet)
 	mx.HandleFunc("/file/"+keyParameter, y.deleteSecret).Methods(http.MethodDelete)
 

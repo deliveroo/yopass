@@ -15,6 +15,9 @@ module "yopass" {
   description   = "Burn after reading password sharing. No logging and the server doesn't have the key"
   tier          = 4
   team_name     = local.supported_team_names["SECURITY_ENGINEERING"]
+
+  tracked_branch = var.env_name == "production" ? "master" : var.env_name
+  force_delete = var.env_name == "production" ? true : false
 }
 
 module "yopass_web" {
@@ -32,6 +35,8 @@ module "yopass_web" {
   alb_anomaly_bounds       = 6
   alb_anomaly_should_alert = false
   health_check_interval    = 30
+
+  force_delete = var.env_name == "production" ? true : false
 }
 
 module "yopass_web_identity" {
