@@ -102,20 +102,20 @@ func (y *Server) getSecret(w http.ResponseWriter, request *http.Request) {
 	secretKey := mux.Vars(request)["key"]
 	secret, err := y.db.Get(secretKey)
 	if err != nil {
-		y.logger.Debug("Secret not found", zap.Error(err), zap.String("key", secretKey))
+		y.logger.Debug("Secret not found", zap.Error(err))
 		http.Error(w, `{"message": "Secret not found"}`, http.StatusNotFound)
 		return
 	}
 
 	data, err := secret.ToJSON()
 	if err != nil {
-		y.logger.Error("Failed to encode request", zap.Error(err), zap.String("key", secretKey))
+		y.logger.Error("Failed to encode request", zap.Error(err))
 		http.Error(w, `{"message": "Failed to encode secret"}`, http.StatusInternalServerError)
 		return
 	}
 
 	if _, err := w.Write(data); err != nil {
-		y.logger.Error("Failed to write response", zap.Error(err), zap.String("key", secretKey))
+		y.logger.Error("Failed to write response", zap.Error(err))
 	}
 }
 
