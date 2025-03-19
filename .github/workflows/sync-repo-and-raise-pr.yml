@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: main
+          ref: master
       - name: Reset promotion branch
         run: |
           git fetch origin staging:staging
@@ -24,6 +24,6 @@ jobs:
           title: 'Sync staging with master'
           body: |
             Staging branch was synced to upstream. This PR syncs the staging branch with the master branch for production deploy.
-          team-reviewers: deliveroo/security-eng
+          team-reviewers: deliveroo/product-sec-eng
           commit-message: 'Sync changes from staging to master [skip ci]'
           delete-branch: true
