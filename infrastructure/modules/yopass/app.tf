@@ -34,6 +34,8 @@ module "yopass_web" {
   alb_anomaly_bounds       = 6
   alb_anomaly_should_alert = false
   health_check_interval    = 30
+
+  force_delete = var.env_name == "production" ? true : false
 }
 
 module "yopass_web_identity" {
