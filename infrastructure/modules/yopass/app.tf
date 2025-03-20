@@ -17,7 +17,6 @@ module "yopass" {
   team_name     = local.supported_team_names["SECURITY_ENGINEERING"]
 
   tracked_branch = var.env_name == "production" ? "master" : var.env_name
-  force_delete = var.env_name == "production" ? true : false
 }
 
 module "yopass_web" {
