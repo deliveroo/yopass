@@ -40,6 +40,7 @@ func init() {
 	pflag.String("cors-allow-origin", "*", "Access-Control-Allow-Origin")
 	pflag.CommandLine.AddGoFlag(&flag.Flag{Name: "log-level", Usage: "Log level", Value: &logLevel})
 
+	viper.SetEnvPrefix("yopass")
 	viper.AutomaticEnv()
 	viper.SetEnvKeyReplacer(strings.NewReplacer("-", "_"))
 	_ = viper.BindPFlags(pflag.CommandLine)
@@ -59,7 +60,13 @@ func main() {
 	key := viper.GetString("tls-key")
 	quit := make(chan os.Signal, 1)
 
-	y := server.New(db, viper.GetInt("max-length"), registry, viper.GetBool("force-onetime-secrets"), logger)
+	y := server.Server{
+		DB:                  db,
+		MaxLength:           viper.GetInt("max-length"),
+		Registry:            registry,
+		ForceOneTimeSecrets: viper.GetBool("force-onetime-secrets"),
+		Logger:              logger,
+	}
 	yopassSrv := &http.Server{
 		Addr:      fmt.Sprintf("%s:%d", viper.GetString("address"), viper.GetInt("port")),
 		Handler:   y.HTTPHandler(),
